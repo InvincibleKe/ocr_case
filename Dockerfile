@@ -2,7 +2,7 @@
 FROM python:3.6
 ADD requirements.txt /
 # 安装项目依赖项
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ADD . /app
 WORKDIR /app
 # 为启动脚本添加执行权限
