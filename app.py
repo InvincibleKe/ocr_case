@@ -17,7 +17,7 @@ class Product(Resource):
         image_file = args['image']
         result = {}
         message = ''
-        if args['model'] == 'ZKKTZS':
+        if model == 'ZKKTZS':
             result = recognition_zkktzs.imgFile_recognition(image_file)
             code = 1
         else:
@@ -26,5 +26,4 @@ class Product(Resource):
         data = {'result': result, 'code': code, 'message': message}
         data_return = json.dumps(data)
         return data_return
-
 api.add_resource(Product, '/api/v1/AI_detect')
