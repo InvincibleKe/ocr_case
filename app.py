@@ -39,12 +39,12 @@ if __name__ == '__main__':
 '''
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse, abort
+from flask_cors import CORS
 import json
 import recognition_zkktzs
 app = Flask(__name__)
 api = Api(app)
-# set arguments from
-
+CORS(app, supports_credentials=True)
 class Product(Resource):
     def get(self):
         return {'msg': 'Please use POST method'}
