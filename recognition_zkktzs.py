@@ -1,3 +1,4 @@
+# coding=UTF-8
 import requests
 import image_rotation
 import cv2
