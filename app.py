@@ -1,3 +1,4 @@
+'''
 from flask import Flask, request
 import json
 import recognition_zkktzs
@@ -64,4 +65,4 @@ class Product(Resource):
         data = {'result': result, 'code': code, 'message': message}
         data_return = json.dumps(data)
         return data_return
-api.add_resource(Product, '/api/v1/AI_detect')'''
+api.add_resource(Product, '/api/v1/AI_detect')
