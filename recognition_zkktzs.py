@@ -12,9 +12,9 @@ def delete_blank(original_data):
     return data_later
 def array2buffer(data_array):
     img_encode = cv2.imencode('.jpg', data_array)[1]
-    str_encode = img_encode.tostring()  # 将array转化为二进制类型
-    data_bytes = BytesIO(str_encode)  # 转化为_io.BytesIO类型
-    data_bytes.name = '....jpg'  # 名称赋值
+    str_encode = img_encode.tostring()
+    data_bytes = BytesIO(str_encode)
+    data_bytes.name = '....jpg'
     data_buffer = BufferedReader(data_bytes)
     return data_buffer
 def read_trurl():
