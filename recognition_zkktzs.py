@@ -57,8 +57,9 @@ def imgFile_recognition(file):
     url = read_trurl()
     angle = 0
     text = []
+    image = open('data/case1.jpg')
     while (True):
-        res = requests.post(url=url, data={'compress': 0}, files={'file': file})
+        res = requests.post(url=url, data={'compress': 0}, files={'file': image})
         print(res)
         res = res.json()
         text = res['data']['raw_out']
