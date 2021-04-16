@@ -53,7 +53,7 @@ class Product(Resource):
         parser.add_argument('model', type=str)
         args = parser.parse_args()
         model = args['model']
-        image_file = request.files['file']
+        image_file = request.files['image']
         result = {}
         message = ''
         if model == 'ZKKTZS':
@@ -63,6 +63,8 @@ class Product(Resource):
             message = 'The required model does not exist'
             code = 0
         data = {'result': result, 'code': code, 'message': message}
-        data_return = json.dumps(data)
+        data_return = json.dumps(data, ensure_ascii=False)
         return data_return
 api.add_resource(Product, '/api/v1/AI_detect')
+if __name__ == '__main__':
+    app.run(debug=True)
