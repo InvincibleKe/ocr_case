@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_restful import Resource, Api, reqparse, abort
 import json
 import recognition_zkktzs
@@ -6,7 +6,6 @@ app = Flask(__name__)
 api = Api(app)
 # set arguments from
 parser = reqparse.RequestParser()
-parser.add_argument('image')
 parser.add_argument('model', type=str)
 class Product(Resource):
     def get(self):
@@ -14,7 +13,7 @@ class Product(Resource):
     def post(self):
         args = parser.parse_args()
         model = args['model']
-        image_file = args['image']
+        image_file = request.files['file']
         result = {}
         message = ''
         if model == 'ZKKTZS':
