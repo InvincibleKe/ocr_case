@@ -33,6 +33,8 @@ def upload():
             return data_return
         else:
             return 'The file format must be png, jpg, jpeg or gif.'
+if __name__ == '__main__':
+    app.run(debug=True)
 '''
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse, abort
