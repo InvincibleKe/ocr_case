@@ -1,6 +1,4 @@
 import requests
-import json
-import base64
 import image_rotation
 import cv2
 import numpy as np
@@ -28,6 +26,7 @@ def read_trurl():
 def getKeyData(text):
     i = 0
     key_data = {}
+    department = ''
     for one in text:
         if '当事人姓名' in one[1]:
             key_data['partyName'] = text[i+1][1]
@@ -47,8 +46,9 @@ def getKeyData(text):
             key_data['bankName'] = text[i+1][1]
         if '开户行行号' in one[1] and '当事人' not in text[i+1][1]:
             key_data['bankCode'] = text[i+1][1]
-        if '派出所' in one[1] or '大队' in one[1] or '看守所' in one[1] or '拘留所' in one[1] or '水利' in one[1]:
+        if department == '' and ('派出所' in one[1] or '大队' in one[1] or '看守所' in one[1] or '拘留所' in one[1] or '水利' in one[1]):
             key_data['department'] = one[1]
+            department = one[1]
         i += 1
     return key_data
 def imgFile_recognition(file):
@@ -58,6 +58,7 @@ def imgFile_recognition(file):
     text = []
     while (True):
         res = requests.post(url=url, data={'compress': 0}, files={'file': file})
+        print(res)
         res = res.json()
         text = res['data']['raw_out']
         text = delete_blank(text)
@@ -67,11 +68,12 @@ def imgFile_recognition(file):
         file.seek(0)
         img = image_rotation.rotate_file(file, angle)
         file = array2buffer(np.array(img))
+    # for one in text: print(one)
     key_data = getKeyData(text)
     return key_data
 
 if __name__ == '__main__':
-    file = open('data/test180.jpg', 'rb')
+    file = open('data/case1.jpg', 'rb')
     key = imgFile_recognition(file)
     for v, k in key.items():
         print('{v}:{k}'.format(v=v, k=k))
