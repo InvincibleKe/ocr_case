@@ -47,7 +47,7 @@ import json
 import recognition_zkktzs
 app = Flask(__name__)
 api = Api(app)
-#CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 class Product(Resource):
     def get(self):
         return {'msg': 'Please use POST method'}
