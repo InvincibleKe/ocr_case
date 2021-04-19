@@ -11,4 +11,4 @@ RUN chmod 755 start.sh
 # 容器启动时要执行的命令
 ENTRYPOINT ["./start.sh"]
 # 暴露端口
-EXPOSE 5000
+EXPOSE 8080

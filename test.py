@@ -5,7 +5,7 @@ if __name__ == '__main__':
     data = {'model': 'ZKKTZS'}
     file = open('data/case1.jpg', 'rb')
     r = requests.post("http://192.168.10.41:8080/api/v1/AI_detect", data=data, files = {'image': file})
-    print(r.json())
+    print(r)
 '''
 if __name__ == '__main__':
     url = 'http://192.168.10.41:8080/api/v1/AI_detect'
