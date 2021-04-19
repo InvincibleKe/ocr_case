@@ -44,8 +44,15 @@ import json
 import recognition_zkktzs
 app = Flask(__name__)
 api = Api(app)
-CORS(app, supports_credentials=True)
-class Product(Resource):
+#CORS(app, supports_credentials=True)
+class TabrResource(Resource):
+    def options(self):
+        return {'Allow': '*'}, 200, {'Access-Control-Allow-Origin': '*',
+                                     'Access-Control-Allow-Methods': 'HEAD, OPTIONS, GET, POST, DELETE, PUT',
+                                     'Access-Control-Allow-Headers': 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild',
+                                     }
+
+class Product(TabrResource):
     def get(self):
         return {'msg': 'Please use POST method'}
     def post(self):
