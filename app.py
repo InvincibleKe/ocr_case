@@ -69,7 +69,7 @@ class Product(Resource):
             code = 1
         data = {'result': result, 'code': code, 'message': message}
         # data_return = json.dumps(data, ensure_ascii=False)
-        res = make_response(jsonify({'data': data}))
+        res = make_response(jsonify(data))
         res.headers['Access-Control-Allow-Origin'] = '*'
         res.headers['Access-Control-Allow-Method'] = '*'
         res.headers['Access-Control-Allow-Headers'] = '*'
