@@ -44,7 +44,7 @@ import json
 import recognition_zkktzs
 app = Flask(__name__)
 api = Api(app)
-#CORS(app, supports_credentials=True)
+CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 class TabrResource(Resource):
     def options(self):
         return {'Allow': '*'}, 200, {'Access-Control-Allow-Origin': '*',
@@ -74,4 +74,4 @@ class Product(TabrResource):
         return data_return
 api.add_resource(Product, '/api/v1/AI_detect')
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', threaded=True, debug=True)
