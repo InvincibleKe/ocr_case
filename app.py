@@ -63,10 +63,10 @@ class Product(Resource):
         message = ''
         if model == 'ZKKTZS':
             result = recognition_zkktzs.imgFile_recognition(img_b64)
-            code = 1
+            code = 0
         else:
             message = 'The required model does not exist'
-            code = 0
+            code = 1
         data = {'result': result, 'code': code, 'message': message}
         # data_return = json.dumps(data, ensure_ascii=False)
         res = make_response(jsonify({'data': data}))
