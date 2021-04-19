@@ -73,7 +73,6 @@ class Product(Resource):
         res.headers['Access-Control-Allow-Method'] = '*'
         res.headers['Access-Control-Allow-Headers'] = '*'
         return res
-
-#api.add_resource(Product, '/api/v1/AI_detect')
+api.add_resource(Product, '/api/v1/AI_detect')
 if __name__ == '__main__':
     app.run(host='0.0.0.0', threaded=True, debug=True)
