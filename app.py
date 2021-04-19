@@ -54,14 +54,15 @@ class Product(Resource):
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('model', type=str, required=True)
-        # parser.add_argument('image64', type=str)
+        parser.add_argument('image', type=str, required=True)
         args = parser.parse_args()
         model = args['model']
-        image_file = request.files['image']
+        #image_file = request.files['image']
+        img_b64 = args['image']
         result = {}
         message = ''
         if model == 'ZKKTZS':
-            result = recognition_zkktzs.imgFile_recognition(image_file)
+            result = recognition_zkktzs.imgFile_recognition(img_b64)
             code = 1
         else:
             message = 'The required model does not exist'

@@ -59,13 +59,13 @@ def getKeyData(text):
                 department = one[1]
         i += 1
     return key_data
-def imgFile_recognition(file):
+def imgFile_recognition(img_b64):
     key_data = {}
     url = read_trurl()
     angle = 0
     text = []
     while (True):
-        res = requests.post(url=url, data={'compress': 0}, files={'file': file})
+        res = requests.post(url=url, data={'img': img_b64})
         print(res)
         res = res.json()
         text = res['data']['raw_out']
