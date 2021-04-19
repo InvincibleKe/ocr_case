@@ -54,7 +54,7 @@ class Product(Resource):
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('model', type=str, required=True)
-        parser.add_argument('image64', type=str)
+        # parser.add_argument('image64', type=str)
         args = parser.parse_args()
         model = args['model']
         image_file = request.files['image']
