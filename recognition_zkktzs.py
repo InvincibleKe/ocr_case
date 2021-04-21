@@ -2,8 +2,9 @@
 import requests
 import image_rotation
 import cv2
+import base64
+from test import img_to_base64
 import numpy as np
-from io import BufferedReader, BytesIO
 def delete_blank(original_data):
     data_later = []
     for item in original_data:
@@ -18,6 +19,7 @@ def array2buffer(data_array):
     data_bytes.name = '....jpg'
     data_buffer = BufferedReader(data_bytes)
     return data_buffer
+
 def read_trurl():
     path = 'data/tr_url.txt'
     data = ''
@@ -65,8 +67,8 @@ def imgFile_recognition(img_b64):
     angle = 0
     text = []
     while (True):
+        print(img_b64[:100])
         res = requests.post(url=url, data={'img': img_b64})
-        print(res)
         res = res.json()
         text = res['data']['raw_out']
         text = delete_blank(text)
@@ -75,14 +77,18 @@ def imgFile_recognition(img_b64):
         angle += 90
         # file.seek(0)
         img_b64 = image_rotation.rotate_file(img_b64, angle)
+        retval, buffer = cv2.imencode('.jpg', img_b64)
+        img_b64 = base64.b64encode(np.array(buffer))
+        #print(img_b64)
         # file = array2buffer(np.array(img))
     # for one in text: print(one)
     key_data = getKeyData(text)
     return key_data
 
 if __name__ == '__main__':
-    file = open('data/case1.jpg', 'rb')
-    key = imgFile_recognition(file)
+    #file = open('data/.jpg', 'rb')
+    img_b64 = img_to_base64('data/test9.jpg')
+    key = imgFile_recognition(img_b64)
     for v, k in key.items():
         print('{v}:{k}'.format(v=v, k=k))
     print(key)
