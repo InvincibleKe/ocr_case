@@ -1,12 +1,18 @@
 import cv2
 from math import *
 import numpy as np
+import base64
 from PIL import Image
-def rotate_file(file, angle):
+def rotate_file(img_b64, angle):
     # 角度是按照逆时针旋转
+    '''
     img = file.read()
     img = np.fromstring(img, np.uint8)
     img = cv2.imdecode(img, cv2.IMREAD_COLOR)
+    img = np.array(img)'''
+    img_data = base64.b64decode(img_b64)
+    nparr = np.fromstring(img_data, np.uint8)
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     img = np.array(img)
     height, width = img.shape[:2]
 

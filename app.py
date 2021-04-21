@@ -76,4 +76,4 @@ class Product(Resource):
         return res
 api.add_resource(Product, '/api/v1/AI_detect')
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', threaded=True, debug=True)
+    app.run(host='0.0.0.0',threaded=True, debug=True)

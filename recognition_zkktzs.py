@@ -73,9 +73,9 @@ def imgFile_recognition(img_b64):
         if text[0][2] >= 0.8 and '通知书' in text[0][1]:
             break
         angle += 90
-        file.seek(0)
-        img = image_rotation.rotate_file(file, angle)
-        file = array2buffer(np.array(img))
+        # file.seek(0)
+        img_b64 = image_rotation.rotate_file(img_b64, angle)
+        # file = array2buffer(np.array(img))
     # for one in text: print(one)
     key_data = getKeyData(text)
     return key_data
