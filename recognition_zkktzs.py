@@ -5,6 +5,7 @@ import cv2
 import base64
 from test import img_to_base64
 import numpy as np
+from io import BufferedReader, BytesIO
 def delete_blank(original_data):
     data_later = []
     for item in original_data:
