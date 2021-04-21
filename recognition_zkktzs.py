@@ -68,7 +68,6 @@ def imgFile_recognition(img_b64):
     angle = 0
     text = []
     while (True):
-        print(img_b64[:100])
         res = requests.post(url=url, data={'img': img_b64})
         res = res.json()
         text = res['data']['raw_out']
