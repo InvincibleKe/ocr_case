@@ -6,7 +6,6 @@ import os
 import json
 import recognition_zkktzs
 compress = os.environ['COMPRESS']
-print(compress)
 app = Flask(__name__)
 api = Api(app)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
@@ -14,7 +13,6 @@ class Product(Resource):
     def get(self):
         return {'msg': 'Please use POST method'}
     def post(self):
-        print(compress)
         parser = reqparse.RequestParser()
         parser.add_argument('model', type=str, required=True)
         parser.add_argument('image', type=str, required=True)
