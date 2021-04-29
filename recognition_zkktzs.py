@@ -5,7 +5,9 @@ import cv2
 import base64
 from test import img_to_base64
 import numpy as np
+import app
 from io import BufferedReader, BytesIO
+#compress = app.compress
 def delete_blank(original_data):
     data_later = []
     for item in original_data:
@@ -62,13 +64,13 @@ def getKeyData(text):
                 department = one[1]
         i += 1
     return key_data
-def imgFile_recognition(img_b64):
+def imgFile_recognition(img_b64, compress):
     key_data = {}
     url = read_trurl()
     angle = 0
     text = []
     while (True):
-        res = requests.post(url=url, data={'img': img_b64, 'compress': 1200})
+        res = requests.post(url=url, data={'img': img_b64, 'compress': int(compress)})
         res = res.json()
         text = res['data']['raw_out']
         text = delete_blank(text)

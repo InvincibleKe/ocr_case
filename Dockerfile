@@ -5,6 +5,7 @@ ADD requirements.txt /
 RUN pip install -r requirements.txt -i https://pypi.mirrors.ustc.edu.cn/simple/
 ADD . /app
 WORKDIR /app
+ENV COMPRESS 1200
 # 为启动脚本添加执行权限
 ADD start.sh /
 RUN chmod 755 start.sh
