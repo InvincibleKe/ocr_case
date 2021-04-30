@@ -69,8 +69,9 @@ def imgFile_recognition(img_b64, compress):
     url = read_trurl()
     angle = 0
     text = []
+    print(compress)
     while (True):
-        res = requests.post(url=url, data={'img': img_b64, 'compress': int(compress)})
+        res = requests.post(url=url, data={'img': img_b64, 'compress': compress})
         res = res.json()
         text = res['data']['raw_out']
         text = delete_blank(text)
