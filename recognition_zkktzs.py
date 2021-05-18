@@ -5,7 +5,6 @@ import cv2
 import base64
 from test import img_to_base64
 import numpy as np
-import app
 from io import BufferedReader, BytesIO
 #compress = app.compress
 def delete_blank(original_data):

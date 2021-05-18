@@ -5,6 +5,7 @@ from flask_cors import CORS
 import os
 import json
 import recognition_zkktzs
+import recognition_dsfzhxxd
 compress = os.environ['COMPRESS']
 app = Flask(__name__)
 api = Api(app)
@@ -13,6 +14,7 @@ class Product(Resource):
     def get(self):
         return {'msg': 'Please use POST method'}
     def post(self):
+        compress = os.environ['COMPRESS']
         parser = reqparse.RequestParser()
         parser.add_argument('model', type=str, required=True)
         parser.add_argument('image', type=str, required=True)
@@ -22,13 +24,18 @@ class Product(Resource):
         img_b64 = args['image']
         result = {}
         message = ''
+        error = ''
+        # 可以在此处增加模型
         if model == 'ZKKTZS':
             result = recognition_zkktzs.imgFile_recognition(img_b64, compress)
+            code = 0
+        elif model == 'DSFZHXXD':
+            result = recognition_dsfzhxxd.imgFile_recognition(img_b64, compress)
             code = 0
         else:
             message = 'The required model does not exist'
             code = 1
-        data = {'result': result, 'code': code, 'message': message}
+        data = {'result': result, 'code': code, 'message': message, 'error': error}
         # data_return = json.dumps(data, ensure_ascii=False)
         res = make_response(jsonify(data))
         res.headers['Access-Control-Allow-Origin'] = '*'
